@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<form id='test-form' action="#">
+  Input1: <input name='input1'><br>
+  Input2: <input name='input2'><br>
+  <input type='submit'>
+</form>
+<script>
+  var testForm = document.getElementById('test-form');
+  testForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    var request = new XMLHttpRequest();
+    // POST to httpbin which returns the POST data as JSON
+    request.open('POST', 'https://installita.neocities.org/text.html', /* async = */ false);
+
+    var formData = new FormData(document.getElementById('test-form'));
+    request.send(formData);
+
+    console.log(request.response);
+  }
+</script>
+
+</body>
+</html>
